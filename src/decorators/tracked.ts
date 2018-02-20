@@ -8,7 +8,9 @@ export function tracked(target: any, propertyKey: string, descriptor: PropertyDe
       this.setState({ [propertyKey]: newValue });
     },
     get: function(this: React.Component): any {
-      return this.state[propertyKey];
+      // 'any' hack.. :-(
+      // this.state doesn't have an index signature in typescript
+      return (<any>this.state)[propertyKey];
     }
   }
 }
