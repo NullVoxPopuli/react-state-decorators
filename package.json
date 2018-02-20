@@ -1,0 +1,25 @@
+{
+  "name": "react-state-decorators",
+  "version": "1.0.0",
+  "description": "Decorators for helping improve the ergonomics of managing react state",
+  "main": "index.js",
+  "author": "NullVoxPopuli",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "start": "react-scripts-ts start",
+    "build": "react-scripts-ts build",
+    "test": "react-scripts-ts test --env=jsdom",
+    "eject": "react-scripts-ts eject"
+  },
+  "peerDependencies": {
+    "react": "> 15.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^16.0.38",
+    "@types/react-dom": "^16.0.4",
+    "react-dom": "^16.2.0",
+    "react-scripts-ts": "^2.13.0",
+    "typescript": "^2.7.2"
+  }
+}
