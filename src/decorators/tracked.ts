@@ -1,6 +1,28 @@
 import * as React from 'react';
 
-export function tracked(target: any, propertyKey: string, descriptor: PropertyDescriptor): PropertyDescriptor {
+declare interface IDecoratorArgs extends Array<any|string|PropertyDescriptor>{
+  0: any, // no idea what 'target' is. always empty object when logged.
+  1: string, 
+  2: PropertyDescriptor
+}
+
+declare type TrackedArgs = string[];
+
+declare type DecoratorType = (target: any, propertyKey: string, descriptor: PropertyDescriptor) => PropertyDescriptor;
+
+
+export function tracked<T>(...args: any[]): PropertyDescriptor | DecoratorType {
+  if (typeof args[0] === 'string') {
+    return track as DecoratorType;
+  }
+
+  return track.call(null, ...args as IDecoratorArgs);
+}
+
+// target: any, propertyKey: string, descriptor: PropertyDescriptor
+function track(this: React.Component, ...args: any[]): PropertyDescriptor {
+  const [target, propertyKey, descriptor] = args;
+
   return {
     configurable: true,
     enumerable: false,
@@ -10,7 +32,7 @@ export function tracked(target: any, propertyKey: string, descriptor: PropertyDe
     get: function(this: React.Component): any {
       // 'any' hack.. :-(
       // this.state doesn't have an index signature in typescript
-      return (<any>this.state)[propertyKey];
+      return (this.state as any)[propertyKey];
     }
   }
 }

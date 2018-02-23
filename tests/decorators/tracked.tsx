@@ -10,29 +10,28 @@ declare interface IState {
 };
 
 class TrackedTest extends React.Component<IProps, IState> {
-  @tracked
-  property = '';
+  @tracked property = '';
 
-  @tracked
-  someNumber = 0;
+  @tracked someNumber = 0;
 
-  @tracked('property')
-  get trackedGetter() {
-    return this.property + ' hi';
-  }
+  // @tracked('property')
+  // get trackedGetter() {
+  //   return this.property + ' hi';
+  // }
 
-  // @tracked('someNumber')
-  computedNumber = {
-    get(this: TrackedTest): number {
-      return this.someNumber;
-    },
-    set(this: TrackedTest, newValue: number): void {
-      this.someNumber = newValue;
-    } 
-  }
+  // // @tracked('someNumber')
+  // computedNumber = {
+  //   get(this: TrackedTest): number {
+  //     return this.someNumber;
+  //   },
+  //   set(this: TrackedTest, newValue: number): void {
+  //     this.someNumber = newValue;
+  //   } 
+  // }
 
   componentDidMount() {
     this.property = 'did mount';
+    // this.setState({ property: 'did mount' });
   }
 
   render() {
