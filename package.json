@@ -1,13 +1,15 @@
 {
   "name": "react-state-decorators",
-  "version": "0.0.1",
+  "version": "0.0.6",
   "description": "Decorators for helping improve the ergonomics of managing react state",
-  "main": "index.js",
   "author": "NullVoxPopuli",
   "license": "MIT",
   "private": false,
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "scripts": {
     "build": "tsc",
+    "prepublishOnly": "tsc",
     "test": "mocha --reporter spec"
   },
   "peerDependencies": {
