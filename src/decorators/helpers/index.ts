@@ -1,7 +1,6 @@
 import { ensurePropertyTracker, runUpdates } from "./property-tracker";
-import { DecoratorType, IDecoratorArgs } from "../_types";
 import { ComputedProperty } from "./computed-property";
-import { Transform } from "./types";
+import { Transform, DecoratorType, IDecoratorArgs } from "./types";
 
 // fn is a transforming function that will be evaluated on the
 // watched property.

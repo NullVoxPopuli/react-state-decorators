@@ -18,22 +18,12 @@ export class ComputedProperty {
     this.name = propertyName;
     this.transform = transform;
     this.descriptorValue = oldDescriptorValue;
-
-    console.log(
-      "creating computed property",
-      propertyName,
-      transform,
-      typeof transform,
-      oldDescriptorValue,
-      this,
-      this.descriptorValue
-    );
   }
 
   public get(context: any) {
     const value = context.state[this.name];
 
-    if (this.oldDescriptorValue) return this.oldDescriptorValue.apply(this);
+    if (this.descriptorValue) return this.descriptorValue.apply(this);
     if (this.transform) return this.transform(value);
 
     return value;

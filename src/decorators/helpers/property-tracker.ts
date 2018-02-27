@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { ComputedProperty } from "./computed-property";
 
 export function runUpdates(
@@ -29,26 +30,24 @@ export function runUpdates(
   });
 }
 
+interface DependentComputedPropertyMap {
+  [propertyName: string]: ComputedProperty[];
+}
+
 export class PropertyTracker {
-  // TODO: change to map to ComputedPropertyList
-  public propertiesToUpdate: {
-    [propertyName: string]: ComputedProperty[];
-  } = {};
-
-  private componentClass: any;
-
-  constructor(component: any) {
-    this.componentClass = component;
-  }
+  public propertiesToUpdate: DependentComputedPropertyMap = {};
 
   public track(dependent: ComputedProperty, dependsOn: string | string[]) {
     const properties = Array.isArray(dependsOn) ? dependsOn : [dependsOn];
 
     properties.forEach(property => {
-      const dependents = this.propertiesToUpdate[property];
+      let dependents = this.propertiesToUpdate[property];
       this.propertiesToUpdate[property] = dependents || [];
 
-      if (!this.propertiesToUpdate[property].includes(dependent)) {
+      dependents = this.propertiesToUpdate[property];
+      const hasAlreadyRecorded = dependents.find(p => p.name === dependent.name);
+
+      if (!hasAlreadyRecorded) {
         this.propertiesToUpdate[property].push(dependent);
       }
     });
@@ -64,7 +63,7 @@ export function ensurePropertyTracker(component: any): PropertyTracker {
   }
 
   if (!component.__propertyTracker) {
-    component.__propertyTracker = new PropertyTracker(component);
+    component.__propertyTracker = new PropertyTracker();
   }
 
   return component.__propertyTracker;

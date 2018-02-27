@@ -1,5 +1,7 @@
 import { makeDecoratorWithTrackedProperties } from "./helpers";
 
-export const readonly = makeDecoratorWithTrackedProperties([], null, {
-  configurable: false
-});
+export const readonly = makeDecoratorWithTrackedProperties(
+  [], 
+  undefined, 
+  { configurable: false }
+);

@@ -1,4 +1,11 @@
-export { tracked } from './decorators/tracked';
+export { 
+    tracked,
+    gt,
+    readonly,
+    isEmpty 
+} from "./decorators";
+
+
 // see https://ember-decorators.github.io/ember-decorators/docs/identifiers.html#addon-object-computed
 // for additional ideas
 // export { alias } from './decorators/alias';
