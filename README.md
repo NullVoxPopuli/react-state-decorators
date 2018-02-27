@@ -27,6 +27,7 @@ export default class MyComponent extends Component {
 https://codesandbox.io/s/v3jm0lpl00
 
 ### Demo (Javascript)
+https://codesandbox.io/s/5w62vmplq4
 
 
 ## Available Decorators
